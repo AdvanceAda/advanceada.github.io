@@ -1,0 +1,14 @@
+{
+  "info": {
+    "url_png_icon_64x64": "https://advanceada.com/Advan_Logo_64.png",
+    "url_png_logo": "https://advanceada.com/Advan_Logo_256.png",
+    "location": "Europe",
+    "social": {
+      "twitter_handle": "AdvanceADA",
+      "github_handle": "AdvanceAda"
+    },
+    "about": {
+      "me": "Advance ADA empowers delegators to strengthen and advance the Cardano ecosystem with trust and reliability."
+    }
+  }
+}
