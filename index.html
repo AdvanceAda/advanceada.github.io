@@ -1,245 +1,746 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex, nofollow" />
-  <title>Advance ADA — Preparing for Launch</title>
-  <meta name="description" content="Advance ADA is preparing for launch. Cardano staking coming soon." />
-  <meta property="og:title" content="Advance ADA — Preparing for Launch" />
-  <meta property="og:description" content="Advance ADA is preparing for launch. Cardano staking coming soon." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og-image.png" />
-  <meta name="theme-color" content="#1E3A8A" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg-start: #0f172a; /* slate-900 */
-      --bg-end: #020617;   /* slate-950 */
-      --brand: #1e40af;    /* blue-800 */
-      --brand-2: #3b82f6;  /* blue-500 */
-      --text: #e5e7eb;     /* gray-200 */
-      --muted: #94a3b8;    /* slate-400 */
-      --accent: #22d3ee;   /* cyan-400 */
-      --card: #0b1220;     /* custom */
-      --ring: rgba(59, 130, 246, 0.35);
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color: var(--text);
-      background: radial-gradient(1200px 800px at 80% -10%, rgba(59, 130, 246, .25), transparent 60%),
-                  radial-gradient(900px 600px at -10% 90%, rgba(34, 211, 238, .18), transparent 60%),
-                  linear-gradient(160deg, var(--bg-start), var(--bg-end));
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
-    .shell {
-      width: 100%;
-      max-width: 960px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border: 1px solid rgba(148, 163, 184, 0.18);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      overflow: hidden;
-      position: relative;
-      backdrop-filter: blur(8px);
-    }
-    .inner {
-      padding: 40px clamp(24px, 6vw, 56px);
-      position: relative;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 28px;
-    }
-    .logo {
-      width: 44px; height: 44px; border-radius: 12px;
-      display: grid; place-items: center;
-      background: radial-gradient(circle at 30% 20%, #60a5fa, #1e3a8a);
-      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255,255,255,.25);
-    }
-    .logo svg { width: 26px; height: 26px; fill: white; }
-    .brand { font-weight: 800; letter-spacing: 0.2px; font-size: 1.05rem; }
-
-    h1 {
-      font-size: clamp(1.8rem, 3.4vw + 1rem, 3.25rem);
-      line-height: 1.1;
-      margin: 10px 0 14px;
-      text-wrap: balance;
-    }
-    .lead { color: var(--muted); font-size: clamp(1rem, 0.7vw + 0.9rem, 1.25rem); max-width: 60ch; }
-
-    .card {
-      margin-top: 28px;
-      background: linear-gradient(180deg, rgba(30,64,175,.35), rgba(30,64,175,.12));
-      border: 1px solid rgba(59,130,246,.35);
-      border-radius: 16px;
-      padding: clamp(16px, 3vw, 24px);
-      display: grid;
-      gap: 16px;
-    }
-    .pill {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 12px; border-radius: 999px;
-      background: rgba(34, 211, 238, 0.15);
-      color: #a5f3fc; border: 1px solid rgba(34, 211, 238, 0.25);
-      font-weight: 600; font-size: 0.9rem;
-    }
-    .row { display: grid; gap: 18px; grid-template-columns: 1fr; }
-    @media (min-width: 720px) { .row { grid-template-columns: 1.25fr .9fr; align-items: center; } }
-
-    .cta {
-      display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
-      padding: 12px 18px; border-radius: 12px; border: 1px solid rgba(59,130,246,.45);
-      background: linear-gradient(180deg, rgba(37, 99, 235, .55), rgba(29, 78, 216, .55));
-      color: white; font-weight: 700; text-decoration: none;
-      box-shadow: 0 8px 18px rgba(30, 64, 175, .45);
-      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
-    }
-    .cta:hover { transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 12px 22px rgba(30, 64, 175, .6); }
-    .cta:active { transform: translateY(0); }
-
-    .muted { color: var(--muted); font-size: 0.95rem; }
-
-    .socials { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-    .iconbtn {
-      width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center;
-      border: 1px solid rgba(148,163,184,.25); background: rgba(2,6,23,.35); color: var(--text);
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .iconbtn:hover { transform: translateY(-1px); border-color: rgba(148,163,184,.5); }
-    .iconbtn svg { width: 20px; height: 20px; fill: currentColor; }
-
-    footer {
-      border-top: 1px solid rgba(148,163,184,.15);
-      padding: 16px clamp(24px, 6vw, 56px);
-      background: rgba(2, 6, 23, 0.35);
-      display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
-    }
-    .right img { max-width: 100%; height: auto; border-radius: 14px; border: 1px solid rgba(148,163,184,.2); }
-
-    /* Simple pulsing dot */
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(34, 211, 238, .6); animation: pulse 2s infinite; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, .6);} 70% { box-shadow: 0 0 0 16px rgba(34, 211, 238, 0);} 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);} }
-
-    /* Optional: countdown gets hidden unless a date is set via data-launch-date */
-    #countdown { display: none; font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
-    #countdown.show { display: flex; gap: 14px; flex-wrap: wrap; }
-    .timebox { background: rgba(2,6,23,.5); border: 1px solid rgba(148,163,184,.25); padding: 10px 12px; border-radius: 10px; min-width: 82px; text-align: center; }
-    .timebox .num { font-size: 1.25rem; font-weight: 800; }
-    .timebox .lbl { font-size: 0.75rem; color: var(--muted); }
-  </style>
-</head>
-<body>
-  <main class="shell" aria-labelledby="title">
-    <div class="inner">
-      <header>
-        <div class="logo" aria-hidden="true" title="Advance ADA">
-          <!-- Simple stylized A mark -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 20h-3.7l-1.9-4.5H8.6L6.7 22H3L12 2zm0 6.8l-2.2 5h4.4L12 8.8z"/></svg>
-        </div>
-        <div class="brand">Advance ADA</div>
-        <span class="pill" title="Status">
-          <span class="dot" aria-hidden="true"></span>
-          Preparing for launch
-        </span>
-      </header>
-
-      <div class="row">
-        <section class="left">
-          <h1 id="title">Secure Staking. Stronger Cardano.</h1>
-          <p class="lead">We're getting everything ready. <strong>Advance ADA</strong> is in final checks and will be live soon. Bookmark this page and follow our updates below.</p>
-
-          <div id="countdown" aria-live="polite" class="count"></div>
-
-          <div class="card" role="group" aria-label="Next steps">
-            <div>
-              <div class="muted" style="margin-bottom:8px;">What to expect</div>
-              <ul style="margin:0; padding-left:18px; line-height:1.7">
-                <li>Pool details (ticker, ID, pledge) published at launch</li>
-                <li>Transparent fees and uptime commitment</li>
-                <li>Real‑time stats and dashboards</li>
-              </ul>
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Advance ADA</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Sen:400,700,800&display=swap" rel="stylesheet">
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <!--<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">-->
+      <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+      <link rel="stylesheet" href="css/custom.css">
+   </head>
+   <body>
+      <div class="header_section">
+         <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+               <a class="navbar-brand"href="index.html"><h1 style="color: white;"><b>Advance ADA (ADVAN)</b></h1></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                     <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="hosting.html">Hosting</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="testimonial.html">Testimonial</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="domain.html">Domain</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                     </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                  </form>
+               </div>
+            </nav>
+            <div class="custom_bg">
+               <div class="custom_menu">
+                  <ul>
+                     <li class="active"><a href="index.html">Home</a></li>
+                     <li><a href="#Why">Why Advance ADA</a></li>
+                     <li><a href="#Stats">Stats</a></li>
+                     <li><a href="#About">About</a></li>
+                     <li><a href="#Badges">Badges</a></li>
+                     <li><a href="#Delegate">Delegate Now</a></li>
+                  </ul>
+               </div>
+               <!--<form class="form-inline my-2 my-lg-0">
+                  <div class="search_btn">
+                     <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                     <li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+                  </div>
+               </form>-->
             </div>
-            <div class="socials" aria-label="Follow us">
-              <a class="cta" href="#" id="notifyLink">Get launch notification</a>
-              <a class="iconbtn" href="https://x.com/advanceada" aria-label="Follow on X / Twitter" title="Follow on X">
-                <!-- X logo -->
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.243 2H21l-6.52 7.45L22.5 22h-6.91l-4.53-6.14L5.71 22H3l7.02-8.02L1.5 2h7.03l4.1 5.59L18.24 2Zm-2.42 18h2.03L7.28 4H5.23l10.59 16Z"/></svg>
-              </a>
-              <a class="iconbtn" href="mailto:advanceada.stakepool@gmail.com" aria-label="Email us" title="Email">
-                <!-- Mail icon -->
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
-              </a>
-              <a class="iconbtn" href="pool-meta.json" aria-label="Pool metadata JSON" title="Pool metadata">
-                <!-- Code icon -->
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.7 16.3 4.4 12l4.3-4.3 1.4 1.4L7.2 12l2.9 2.9-1.4 1.4Zm6.6 0-1.4-1.4 2.9-2.9-2.9-2.9 1.4-1.4L19.6 12l-4.3 4.3Z"/></svg>
-              </a>
+         </div>
+
+         <!-- banner section start --> 
+         <div class="banner_section layout_padding">
+            <div id="my_slider" class="carousel slide" data-ride="carousel">
+               <div class="carousel-inner">
+                  <div class="carousel-item active">
+                     <div class="container">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="banner_img"><img src="images/Advan_Logo_NoBG.png"></div>
+                           </div>
+                           <div class="col-md-6">
+                              <h1 class="banner_taital">Secure Staking.<br>Stronger Cardano.</h1>
+                              <h2 style="color: white;">Pool Ticker: ADVAN</h2>
+                              <h2 style="color: white; font-size: 14px; font-family: monospace; word-break: break-all; display: flex; align-items: center; gap: 8px;">
+                                 Pool ID:<br>pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h
+                                 <button 
+                                   onclick="navigator.clipboard.writeText('pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h')"
+                                   style="font-size: 12px; padding: 2px 6px; cursor: pointer;"
+                                 >
+                                   Copy
+                                 </button>
+                               </h2>
+                               <h2 style="color: white; font-size: 14px; font-family: monospace; word-break: break-all; display: flex; align-items: center; gap: 8px;">
+                                 Pool Hash:<br>16e930306d76e1fb68ea69419db4a999eeb42866f8466972efee69fd
+                                 <button 
+                                   onclick="navigator.clipboard.writeText('16e930306d76e1fb68ea69419db4a999eeb42866f8466972efee69fd')"
+                                   style="font-size: 12px; padding: 2px 6px; cursor: pointer;"
+                                 >
+                                   Copy
+                                 </button>
+                               </h2>
+                                                              
+                              <!--<div class="read_bt"><a href="#">Read More</a></div>-->
+                           </div>
+
+                        </div>
+                     </div>
+                  </div>
+                  <div class="carousel-item">
+                     <div class="container">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <h1 class="banner_taital">Stake with ADVAN: <br>Power Up Your Cardano Journey!</h1>
+                              <h2 style="color: white;">Delegate your Cardano (ADA) to ADVAN, a professionally hosted, independent stake pool championing Cardano’s decentralization. With the <b>minimum allowed fee, a dedicated pledge, and high-performance infrastructure</b>, ADVAN delivers reliable staking and optimized rewards. <br><br>Join ADVAN today to support a decentralized future and earn rewards with a trusted small pool!</h2>
+                              <!--<div class="read_bt"><a href="#">Read More</a></div>-->
+                           </div>
+                           <div class="col-md-6">
+                              <div class="banner_img"><img src="images/banner-img.png"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!--
+                  <div class="carousel-item">
+                     <div class="container">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <h1 class="banner_taital">Hosting <br>And Domain</h1>
+                              <div class="read_bt"><a href="#">Read More</a></div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="banner_img"><img src="images/Advan_Logo_NoBG.png"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>-->
+               </div>
+               <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+               <i class="fa fa-angle-left"></i>
+               </a>
+               <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+               <i class="fa fa-angle-right"></i>
+               </a>
             </div>
-            <div class="muted">Prefer email? Write to <a href="mailto:advanceada.stakepool@gmail.com" style="color:#bfdbfe; text-decoration: underline;">advanceada.stakepool@gmail.com</a>.</div>
-          </div>
-        </section>
-        <aside class="right" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop" alt="Abstract blue gradient" />
-        </aside>
+         </div>
+         <!-- banner section end -->
       </div>
-    </div>
-    <footer>
-      <small class="muted">© <span id="year"></span> Advance ADA. All rights reserved.</small>
-      <small class="muted">This is a temporary landing page.</small>
-    </footer>
-  </main>
+      <!-- header section end -->
+      <!-- domain section start -->
+      <!--<div class="domain_section">
+         <div class="container">
+            <div class="domain_box">
+               <div class="domain_rate">
+                  <ul>
+                     <li><a href="#"><span style="color: #8b2791;">.com</span> $11.25</a></li>
+                     <li><a href="#"><span style="color: #8b2791;">.org</span> $12.50</a></li>
+                     <li><a href="#"><span style="color: #8b2791;">.net</span> $14.50 </a></li>
+                     <li><a href="#"><span style="color: #8b2791;">.com</span> $11.50</a></li>
+                     <li><a href="#"><span style="color: #8b2791;">info</span> $9.00</a></li>
+                     <li><a href="#"><span style="color: #8b2791;">xyz</span> $0.99</a></li>
+                  </ul>
+               </div>
+               <div class="domain_main">
+                  <form class="example" action="#">
+                     <input type="text" placeholder="Search Domain.." name="Search Domain..">
+                     <button type="submit">Search Now</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>-->
+      <!-- domain section end -->
 
-  <script>
-    // Update year
-    document.getElementById('year').textContent = new Date().getFullYear();
+<!-- Why section start -->
+<div class="about_section layout_padding" id="Why">
+   <div class="container">
+      
+      <!-- Section Title -->
+      <div class="container">
+         <div class="row">
+           <div class="col-md-12">
+             <h1 class="pricing_taital" style="color: #21237a; margin-bottom: 50px;">Why Delegate to Advance ADA</h1>
+             <!--<p class="pricing_text">Why Delegate to Advance ADA</p>-->
+           </div>
+         </div>
 
-    // OPTIONAL: countdown — set a launch date to enable
-    // Example: add data-launch-date="2025-09-01T12:00:00-03:00" to <main>
-    (function setupCountdown(){
-      var root = document.querySelector('main');
-      var dateStr = root.getAttribute('data-launch-date');
-      if(!dateStr) return; // no date provided
-      var target = new Date(dateStr);
-      var el = document.getElementById('countdown');
-      el.classList.add('show');
+      <!-- Row 1 -->
+      <div class="row about-row" style="margin-bottom: 80px;">
+         <div class="col-md-4">
+            <div class="about_box">
+               <div class="icon-circle" style="width: 120px; height: 120px; margin-top: -60px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; text-align: center;"><i class="fas fa-server" style="font-size: 40px; line-height: 120px;"></i></div>
+               <h3 class="faster_text">Reliable & High-Performance Infrastructure</h3>
+               <p class="lorem_text">Bare-metal core node ensures stable, responsive operation and maximizes staking effectiveness.</p>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="about_box">
+               <div class="icon-circle" style="width: 120px; height: 120px; margin-top: -60px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; text-align: center;"><i class="fas fa-shield-alt" style="font-size: 40px; line-height: 120px;"></i></div>
+               <h3 class="faster_text">Secure Setup with Failover</h3>
+               <p class="lorem_text">Hybrid architecture with two VPS relays (one public, one hidden) ensures redundancy and maintains operations if the core node experiences issues.</p>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="about_box">
+               <div class="icon-circle" style="width: 120px; height: 120px; margin-top: -60px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; text-align: center;"><i class="fas fa-bell" style="font-size: 40px; line-height: 120px;"></i></div>
+               <h3 class="faster_text">Monitoring & Alerts</h3>
+               <p class="lorem_text">Continuous monitoring and automated alerts ensure any issues are quickly addressed to keep the pool operational.</p>
+            </div>
+         </div>
+      </div>
 
-      function fmt(n){ return String(Math.max(0, n|0)).padStart(2, '0'); }
-      function render(){
-        var now = new Date();
-        var diff = Math.max(0, target - now);
-        var s = Math.floor(diff/1000);
-        var days = Math.floor(s/86400); s -= days*86400;
-        var hrs = Math.floor(s/3600); s -= hrs*3600;
-        var mins = Math.floor(s/60); s -= mins*60;
-        var html = [
-          ['Days',days],['Hours',hrs],['Minutes',mins],['Seconds',s]
-        ].map(function(pair){
-          return '<div class="timebox"><div class="num">'+fmt(pair[1])+'</div><div class="lbl">'+pair[0]+'</div></div>';
-        }).join('');
-        el.innerHTML = html;
-        if(diff === 0){ clearInterval(t); el.textContent = 'Launched!'; }
-      }
-      render();
-      var t = setInterval(render, 1000);
-    })();
+      <!-- Row 2 -->
+      <div class="row about-row" style="margin-bottom: 80px;">
+         <div class="col-md-4">
+            <div class="about_box">
+               <div class="icon-circle" style="width: 120px; height: 120px; margin-top: -60px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; text-align: center;"><i class="fas fa-percentage" style="font-size: 40px; line-height: 120px;"></i></div>
+               <h3 class="faster_text">Minimal Fees</h3>
+               <p class="lorem_text">170 ADA fixed per epoch with 0% margin maximizes rewards for delegators.</p>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="about_box">
+               <div class="icon-circle" style="width: 120px; height: 120px; margin-top: -60px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; text-align: center;"><i class="fas fa-hand-holding-usd" style="font-size: 40px; line-height: 120px;"></i></div>
+               <h3 class="faster_text">Committed Pledge</h3>
+               <p class="lorem_text">50,000 ADA pledge demonstrates our stake in the network and aligns our success with yours.</p>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="about_box">
+               <div class="icon-circle" style="width: 120px; height: 120px; margin-top: -60px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; text-align: center;"><i class="fas fa-sync-alt" style="font-size: 40px; line-height: 120px;"></i></div>
+               <h3 class="faster_text">Always Up-to-Date</h3>
+               <p class="lorem_text">We keep our node consistently updated to ensure reliable performance and compatibility with the Cardano network.</p>
+            </div>
+         </div>
+      </div>
 
-    // Replace # with your notification link (e.g., Mailchimp, Substack, Google Form)
-    document.getElementById('notifyLink').addEventListener('click', function(e){
-      if(this.getAttribute('href') === '#'){
-        e.preventDefault();
-        alert('Connect your notification link in the HTML (id="notifyLink").');
-      }
-    });
-  </script>
-</body>
+      <!-- Row 3 -->
+      <div class="row about-row">
+         <div class="col-md-4">
+            <div class="about_box">
+               <div class="icon-circle" style="width: 120px; height: 120px; margin-top: -60px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; text-align: center;"><i class="fas fa-database" style="font-size: 40px; line-height: 120px;"></i></div>
+               <h3 class="faster_text">Professional Hosting</h3>
+               <p class="lorem_text">Servers are in a secure, monitored datacenter with redundant power, network, and environmental systems.</p>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="about_box">
+               <div class="icon-circle" style="width: 120px; height: 120px; margin-top: -60px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; text-align: center;"><i class="fas fa-network-wired" style="font-size: 40px; line-height: 120px;"></i></div>
+               <h3 class="faster_text">Support Decentralization</h3>
+               <p class="lorem_text">Delegating to an independent pool strengthens Cardano’s fairness, distribution, and network resilience.</p>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="about_box">
+               <div class="icon-circle" style="width: 120px; height: 120px; margin-top: -60px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; text-align: center;"><i class="fas fa-eye" style="font-size: 40px; line-height: 120px;"></i></div>
+               <h3 class="faster_text">Transparent Operations</h3>
+               <p class="lorem_text">Full visibility into pool performance and stake distribution keeps delegators informed and confident.</p>
+            </div>
+         </div>
+      </div>
+
+   </div>
+</div>
+<!-- Why section end -->
+
+<!-- Stats section start -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script><script>
+   $.getJSON("https://js.cexplorer.io/api-static/pool/pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h.json", function(data) { 
+   $.each( data.data, function( i, val ) { 
+         a=new Array('tax_fix','pledge','stake');
+         if(a.includes(i))  val=Math.round(parseInt(val)/1000000);
+         if(i=='blocks_lifetime') val=parseInt(val) + parseInt(data.data.blocks_epoch);
+   
+         $('#pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_'+i).html(val).text();   
+   }); 
+         });
+   </script>
+
+<div class="stats_section layout_padding" id="Stats">
+   <div class="container">
+      <div class="row">
+         <!-- Left column: Stats title and boxes -->
+         <div class="col-md-6">
+            <h1 class="stats_taital">Stats</h1>
+            <div class="stats_boxes">
+               <!-- First row: Live Stake (full width) -->
+               <div class="row mb-3">
+                  <div class="col-12">
+                     <div class="stat_box">
+                        <h3>Live Stake</h3>
+                        <p id="liveStake"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_stake"></span> ADA</p>
+                     </div>
+                  </div>
+               </div>
+               <!-- Second row: Return Lifetime (left) and Blocks Lifetime (right) -->
+               <div class="row mb-3">
+                  <div class="col-6">
+                     <div class="stat_box">
+                        <h3>Return Lifetime</h3>
+                        <p id="returnLifetime"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_roa_lifetime"></span>%</p>
+                     </div>
+                  </div>
+                  <div class="col-6">
+                     <div class="stat_box">
+                        <h3>Blocks Lifetime</h3>
+                        <p id="blocksLifetime">Blocks Lifetime: <span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_blocks_lifetime"></span></p>
+                     </div>
+                  </div>
+               </div>
+               <!-- Third row: Pledge (left) and Cost (right) -->
+               <div class="row">
+                  <div class="col-6">
+                     <div class="stat_box">
+                        <h3>Pledge</h3>
+                        <p id="pledge"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_pledge"></span> ADA</p>
+                     </div>
+                  </div>
+                  <div class="col-6">
+                     <div class="stat_box">
+                        <h3>Cost</h3>
+                        <p id="poolCost">Costs: 0<span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_ratio"></span>% +  <span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_fix"></span> ADA</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Right column: Image -->
+         <div class="col-md-6">
+            <div class="stats_img text-center">
+               <img src="images/Advan_Blockchain_NoBG.png" alt="Advan Blockchain" class="img-fluid">
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<style>
+   .stats_section {
+       background-color: #272b91; /* Updated to new blue notation */
+       color: #ffffff; /* White text for visibility */
+       padding: 40px 0; /* Add padding for better spacing */
+   }
+   .stats_taital {
+       color: #ffffff; /* White title text */
+       margin-bottom: 20px;
+   }
+   .stats_boxes {
+       margin-bottom: 20px;
+   }
+   .stat_box {
+       background-color: transparent; /* Transparent background for stat boxes */
+       color: #ffffff; /* White text for visibility */
+       border: 2px solid #ffffff; /* White border for stat boxes */
+       padding: 10px;
+       margin-bottom: 15px;
+       text-align: center; /* Center text for better presentation */
+       border-radius: 5px; /* Rounded corners to match the image style */
+   }
+   .stat_box h3, .stat_box p {
+       color: #ffffff; /* Ensure all text inside stat boxes is white */
+       margin: 0; /* Remove default margins for cleaner look */
+   }
+   .stats_img img {
+       max-width: 100%; /* Ensure image scales properly */
+       height: auto; /* Maintain aspect ratio */
+   }
+   .mb-3 {
+       margin-bottom: 30px; /* Increased margin to separate rows visually */
+   }
+   /* Ensure rows don't collapse */
+   .row {
+       min-height: 60px; /* Minimum height to force row visibility */
+   }
+</style>
+<!-- Stats section end -->
+
+      <!-- hosting section start -->
+<!--      <div class="hosting_section layout_padding" id="Stats">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <h1 class="hosting_taital">Recent Stats</h1>
+                  <p class="hosting_text"> To be updated - Under construction <br><br><br><br><br><br><br><br></p>
+                  <!--<div class="click_bt"><a href="#">Click Here</a></div>-->
+<!--               </div>
+               <div class="col-md-6">
+                  <div class="hosting_img"><img src="images/Advan_Blockchain.png"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- hosting section end -->
+
+
+      <!-- about section start -->
+<div class="pricing_section layout_padding" id="About">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <h1 class="pricing_taital" style="color: #21237a; margin-bottom: 20px;">About Advance ADA</h1>
+       </div>
+     </div>
+
+     <div class="pricing_section_2">
+       <!-- Overview takes full row -->
+       <div class="row mb-4">
+         <div class="col-md-12">
+           <div class="pricing_box">
+             <h1 class="monthly_text">Overview</h1>
+             <p class="band_text">
+               AdvanceADA is a professionally operated Cardano stake pool focused on secure, reliable, and transparent staking. 
+               We maintain advanced infrastructure, low fees, and a committed pledge to provide delegators with confidence 
+               while supporting Cardano’s long-term decentralization and network growth.
+             </p>
+           </div>
+         </div>
+       </div>
+ 
+       <!-- Mission + Vision side by side -->
+       <div class="row">
+         <div class="col-md-6 d-flex">
+           <div class="pricing_box flex-fill">
+             <h1 class="monthly_text">Mission</h1>
+             <p class="band_text">
+               Our mission is to provide delegators with a trustworthy, efficient, and reliable way to stake ADA 
+               while contributing to a decentralized Cardano ecosystem.
+             </p>
+           </div>
+         </div>
+ 
+         <div class="col-md-6 d-flex">
+           <div class="pricing_box flex-fill">
+             <h1 class="monthly_text">Vision</h1>
+             <p class="band_text">
+               Our vision is to become a preferred choice for ADA delegators seeking a professional, secure, 
+               and consistently reliable stake pool.
+             </p>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+ <!-- about section end -->
+
+      <!-- services section start -->
+      <div class="services_section layout_padding" id="Badges">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <h1 class="services_taital">Badges</h1>
+                  <p class="services_text">As our pool grows, we’ll proudly display Cexplorer.io badges earned through reliability, contribution, and community engagement.</p>
+                  <!--<p class="services_text">Cexplorer.io badges showcase our pool’s proven reliability, community engagement, and Cardano ecosystem contributions.</p>-->
+               </div>
+            </div>
+            <div class="services_section_2">
+               <div id="main_slider"class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                     <div class="carousel-item active">
+                        <div class="row">
+                           <div class="col-md-4">
+                              <div class="service_box" style="text-align: center;">
+                                 <img src="images/Advan-Badge-Pool-Creation.png" class="image_1" width="160" height="160">
+                                 <h3 class="wordpress_text">Pool creation</h3>
+                                 <p class="opposed_text">2025-08-18<br>Celebrating Advance ADA's registration on the blockchain!</p>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="service_box">
+                                 <div class="services_icon">
+                                    <img src="images/icon-4.png" class="image_1">
+                                    <img src="images/icon-4.png" class="image_2">
+                                 </div>
+                                 <h3 class="wordpress_text">100k Stake</h3>
+                                 <p class="opposed_text">A next goal to be celebrated by Advance ADA.</p>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="service_box">
+                                 <div class="services_icon">
+                                    <img src="images/icon-4.png" class="image_1">
+                                    <img src="images/icon-4.png" class="image_2">
+                                 </div>
+                                 <h3 class="wordpress_text">First block</h3>
+                                 <p class="opposed_text">A next goal to be celebrated by Advance ADA.</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="carousel-item">
+                        <div class="row">
+                           <div class="col-md-4">
+                              <div class="service_box">
+                                 <div class="services_icon">
+                                    <img src="images/icon-4.png" class="image_1">
+                                    <img src="images/icon-4.png" class="image_2">
+                                 </div>
+                                 <h3 class="wordpress_text">200%+ Luck</h3>
+                                 <p class="opposed_text">A next goal to be celebrated by Advance ADA.</p>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="service_box">
+                                 <div class="services_icon">
+                                    <img src="images/icon-4.png" class="image_1">
+                                    <img src="images/icon-4.png" class="image_2">
+                                 </div>
+                                 <h3 class="wordpress_text">10 Blocks</h3>
+                                 <p class="opposed_text">A next goal to be celebrated by Advance ADA.</p>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="service_box">
+                                 <div class="services_icon">
+                                    <img src="images/icon-4.png" class="image_1">
+                                    <img src="images/icon-4.png" class="image_2">
+                                 </div>
+                                 <h3 class="wordpress_text">10 Delegators</h3>
+                                 <p class="opposed_text">A next goal to be celebrated by Advance ADA.</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!--
+                     <div class="carousel-item">
+                        <div class="row">
+                           <div class="col-md-4">
+                              <div class="service_box">
+                                 <div class="services_icon">
+                                    <img src="images/icon-4.png" class="image_1">
+                                    <img src="images/icon-7.png" class="image_2">
+                                 </div>
+                                 <h3 class="wordpress_text">WordPress Hosting</h3>
+                                 <p class="opposed_text">opposed to using 'Content here, content here', making it look like readable</p>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="service_box">
+                                 <div class="services_icon">
+                                    <img src="images/icon-5.png" class="image_1">
+                                    <img src="images/icon-5.png" class="image_2">
+                                 </div>
+                                 <h3 class="wordpress_text">Cloud Hosting</h3>
+                                 <p class="opposed_text">opposed to using 'Content here, content here', making it look like readable</p>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="service_box">
+                                 <div class="services_icon">
+                                    <img src="images/icon-6.png" class="image_1">
+                                    <img src="images/icon-9.png" class="image_2">
+                                 </div>
+                                 <h3 class="wordpress_text">Dedicated Hosting</h3>
+                                 <p class="opposed_text">opposed to using 'Content here, content here', making it look like readable</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>-->
+                  </div>
+                  <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+                  <i class="fa fa-angle-left"></i>
+                  </a>
+                  <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+                  <i class="fa fa-angle-right"></i>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- services section end -->
+
+
+      <!-- testimonial section start -->
+      <div class="testimonial_section layout_padding" id="Delegate">
+         <div class="container">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+               <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+               </ol>
+               <div class="carousel-inner">
+                  <div class="carousel-item active">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <h1 class="testimonial_taital">Delegate Now - Step 1. Choose Your Wallet</h1>
+                           <!--<p class="testimonial_text">1. Choose Your Wallet</p>-->
+                           <div class="testimonial_section_2">
+                              <p class="ipsum_text">Start by selecting a Cardano-compatible wallet, such as Daedalus, Yoroi, or Eternl. Make sure your ADA is safely stored and your wallet is fully synced with the network before proceeding.</p>
+                              <!--<div class="quick_img"><img src="images/quick-icon.png"></div>-->
+                           </div>
+                           <!--<div class="client_img"><img src="images/client-img.png"></div>
+                           <h4 class="client_name">Joy Mori</h4>-->
+                        </div>
+                     </div>
+                  </div>
+                  <div class="carousel-item">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <h1 class="testimonial_taital">Delegate Now</h1>
+                           <p class="testimonial_text">2. Find ADVAN Stake Pool</p>
+                           <div class="testimonial_section_2">
+                              <p class="ipsum_text">Within your wallet’s delegation interface, search for our pool by its <b>ticker: ADVAN</b> or pool ID. Review the pool details if you like, then select it as your delegation target.</p>
+                              <!--<div class="quick_img"><img src="images/quick-icon.png"></div>-->
+                           </div>
+                           <!--<div class="client_img"><img src="images/client-img.png"></div>
+                           <h4 class="client_name">Joy Mori</h4>-->
+                        </div>
+                     </div>
+                  </div>
+                  <div class="carousel-item">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <h1 class="testimonial_taital">Delegate Now</h1>
+                           <p class="testimonial_text">3. Delegate Your ADA</p>
+                           <div class="testimonial_section_2">
+                              <p class="ipsum_text">Decide how much ADA you want to delegate and confirm the transaction. Your delegation will be active after the next epoch, and you’ll start earning rewards while supporting the ADVAN stake pool.</p>
+                              <!--<div class="quick_img"><img src="images/quick-icon.png"></div>-->
+                           </div>
+                           <!--<div class="client_img"><img src="images/client-img.png"></div>
+                           <h4 class="client_name">Joy Mori</h4>-->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- testimonial section end -->
+
+      <!-- newslatter section start -->
+      <!-- 
+      <div class="newslatter_section">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <h1 class="newslatter_taital">Subscribe Newsletter</h1>
+                  <form class="example" action="#">
+                     <input type="text" class="mail" placeholder="Enter Your email" name="Enter Your email">
+                     <button type="submit">Sbscribe</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   -->
+      <!-- newslatter section end -->
+      <!-- footer section start -->
+      <div class="footer_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-sm-4">
+                  <h3 class="footer_text">Useful links</h3>
+                  <div class="footer_menu">
+                     <ul>
+                        <li class="active"><a href="index.html"><span class="angle_icon active"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Advance ADA Stake Pool Website</a></li>
+                        <li><a href="https://cardano.org/"><span class="angle_icon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>  Cardano.org</a></li>
+                        <li><a href="https://explorer.cardano.org/"><span class="angle_icon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Cardano Explorers Page</a></li>
+                        <li><a href="https://cardanoscan.io/"><span class="angle_icon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Cardano Scan (Block Explorer)</a></li>
+                        <li><a href="https://cexplorer.io/"><span class="angle_icon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>  CExplorer.io</a></li>
+                        <li><a href="https://gov.tools/"><span class="angle_icon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>  Cardano Gov Tools</a></li>
+                     </ul>
+                  </div>
+               </div>
+               
+               <div class="col-sm-4">
+                  <!--
+                  <h3 class="footer_text">Address</h3>
+                  <div class="location_text">
+                     <ul>
+                        <li>
+                           <a href="#">
+                           <span class="padding_left_10"><i class="fa fa-map-marker" aria-hidden="true"></i></span>It is a long established fact that a<br> reader will be distracted</a>
+                        </li>
+                        <li>
+                           <a href="#">
+                           <span class="padding_left_10"><i class="fa fa-phone" aria-hidden="true"></i></span>(+71) 1234567890<br>(+71) 1234567890
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                           <span class="padding_left_10"><i class="fa fa-envelope" aria-hidden="true"></i></span>demo@gmail.com
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+               -->
+               </div>
+            
+               <div class="col-sm-4">
+                  <div class="footer_main">
+                     <h3 class="footer_text">Connections</h3>
+                     <p class="dummy_text">Connect with Advance ADA.</p>
+                     <div class="social_icon">
+                        <ul>
+                           <!--<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>-->
+                           <li><a href="https://www.advanceada.com"><i class="fa fa-globe" aria-hidden="true"></i></a></li>
+                           <li><a href="https://x.com/advanceada"><i class="fab fa-x-twitter" aria-hidden="true"></i></a></li>
+                           <li><a href="mailto:advanceada.stakepool@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                           <!--<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>-->
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- footer section end -->
+      <!-- copyright section start -->
+      <div class="copyright_section">
+         <div class="container">
+            <p class="copyright_text">Advanced ADA Cardano Stake Pool - Ticker ADVAN - 2025 All Rights Reserved.</p>
+         </div>
+      </div>
+      <!-- copyright section end -->
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+   </body>
 </html>
-

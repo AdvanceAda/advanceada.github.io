@@ -1,0 +1,85 @@
+/* === About Boxes Layout & Equal Height === */
+.about_box {
+    display: flex;
+    flex-direction: column; /* stack content vertically */
+    height: 100%;           /* fill column height */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* === Add spacing between rows === */
+.about-row {
+    margin-bottom: 40px; /* space between each row of boxes */
+}
+
+/* === Icon Circle Styling with Bigger Icons === */
+.icon-circle {
+   width: 90px;               /* larger circle */
+   height: 90px;
+   border-radius: 50%;
+   background: #f0f0f0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 30px auto 20px;    /* top spacing above circle */
+}
+
+.icon-circle i {
+   font-size: 40px;           /* bigger icon */
+   color: #21237a;            /* brand color */
+}
+
+/* STATS CSS SECTION */
+
+/* Ensure the stats section is properly contained with the specified blue background */
+.stats_section {
+   padding: 50px 0;
+   background-color: #00394D; /* Updated to match the intended dark teal from CMYK: 100,99,0,77 */
+   color: #ffffff; /* White text for contrast */
+}
+
+/* Style for the stats_boxes container */
+.stats_boxes {
+   /* Remove flexbox to respect Bootstrap rows */
+   gap: 0; /* Remove gap since rows will handle spacing */
+   margin-bottom: 20px; /* Space below the stats section */
+}
+
+/* Style for individual stat boxes */
+.stat_box {
+   background-color: transparent; /* Transparent background as requested */
+   padding: 10px; /* Adjusted padding for consistency */
+   border: 2px solid #ffffff; /* White border as requested */
+   border-radius: 5px; /* Rounded corners to match the image style */
+   text-align: center;
+   /* Remove flex properties to let Bootstrap grid handle layout */
+   box-sizing: border-box;
+   min-width: 0; /* Remove min-width to allow grid flexibility */
+}
+
+/* Ensure the title is properly aligned and white */
+.stats_taital {
+   margin-bottom: 30px;
+   font-size: 2.5rem;
+   font-weight: bold;
+   color: #ffffff; /* White title as requested */
+}
+
+/* Image styling to ensure it stays in its column */
+.stats_img img {
+   max-width: 100%;
+   height: auto;
+   display: block;
+   margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+   .stats_boxes .row {
+      flex-direction: column; /* Stack rows vertically on small screens */
+   }
+   .stat_box {
+      flex: 1 1 100%; /* Full width for each box on small screens */
+      margin-bottom: 15px; /* Space between stacked boxes */
+   }
+}

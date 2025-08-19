@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Advance ADA — Preparing for Launch</title>
+  <meta name="description" content="Advance ADA is preparing for launch. Cardano staking coming soon." />
+  <meta property="og:title" content="Advance ADA — Preparing for Launch" />
+  <meta property="og:description" content="Advance ADA is preparing for launch. Cardano staking coming soon." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.png" />
+  <meta name="theme-color" content="#1E3A8A" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-start: #0f172a; /* slate-900 */
+      --bg-end: #020617;   /* slate-950 */
+      --brand: #1e40af;    /* blue-800 */
+      --brand-2: #3b82f6;  /* blue-500 */
+      --text: #e5e7eb;     /* gray-200 */
+      --muted: #94a3b8;    /* slate-400 */
+      --accent: #22d3ee;   /* cyan-400 */
+      --card: #0b1220;     /* custom */
+      --ring: rgba(59, 130, 246, 0.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(59, 130, 246, .25), transparent 60%),
+                  radial-gradient(900px 600px at -10% 90%, rgba(34, 211, 238, .18), transparent 60%),
+                  linear-gradient(160deg, var(--bg-start), var(--bg-end));
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .shell {
+      width: 100%;
+      max-width: 960px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+      position: relative;
+      backdrop-filter: blur(8px);
+    }
+    .inner {
+      padding: 40px clamp(24px, 6vw, 56px);
+      position: relative;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .logo {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: grid; place-items: center;
+      background: radial-gradient(circle at 30% 20%, #60a5fa, #1e3a8a);
+      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255,255,255,.25);
+    }
+    .logo svg { width: 26px; height: 26px; fill: white; }
+    .brand { font-weight: 800; letter-spacing: 0.2px; font-size: 1.05rem; }
+
+    h1 {
+      font-size: clamp(1.8rem, 3.4vw + 1rem, 3.25rem);
+      line-height: 1.1;
+      margin: 10px 0 14px;
+      text-wrap: balance;
+    }
+    .lead { color: var(--muted); font-size: clamp(1rem, 0.7vw + 0.9rem, 1.25rem); max-width: 60ch; }
+
+    .card {
+      margin-top: 28px;
+      background: linear-gradient(180deg, rgba(30,64,175,.35), rgba(30,64,175,.12));
+      border: 1px solid rgba(59,130,246,.35);
+      border-radius: 16px;
+      padding: clamp(16px, 3vw, 24px);
+      display: grid;
+      gap: 16px;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 999px;
+      background: rgba(34, 211, 238, 0.15);
+      color: #a5f3fc; border: 1px solid rgba(34, 211, 238, 0.25);
+      font-weight: 600; font-size: 0.9rem;
+    }
+    .row { display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 720px) { .row { grid-template-columns: 1.25fr .9fr; align-items: center; } }
+
+    .cta {
+      display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+      padding: 12px 18px; border-radius: 12px; border: 1px solid rgba(59,130,246,.45);
+      background: linear-gradient(180deg, rgba(37, 99, 235, .55), rgba(29, 78, 216, .55));
+      color: white; font-weight: 700; text-decoration: none;
+      box-shadow: 0 8px 18px rgba(30, 64, 175, .45);
+      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    }
+    .cta:hover { transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 12px 22px rgba(30, 64, 175, .6); }
+    .cta:active { transform: translateY(0); }
+
+    .muted { color: var(--muted); font-size: 0.95rem; }
+
+    .socials { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .iconbtn {
+      width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center;
+      border: 1px solid rgba(148,163,184,.25); background: rgba(2,6,23,.35); color: var(--text);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .iconbtn:hover { transform: translateY(-1px); border-color: rgba(148,163,184,.5); }
+    .iconbtn svg { width: 20px; height: 20px; fill: currentColor; }
+
+    footer {
+      border-top: 1px solid rgba(148,163,184,.15);
+      padding: 16px clamp(24px, 6vw, 56px);
+      background: rgba(2, 6, 23, 0.35);
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .right img { max-width: 100%; height: auto; border-radius: 14px; border: 1px solid rgba(148,163,184,.2); }
+
+    /* Simple pulsing dot */
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(34, 211, 238, .6); animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, .6);} 70% { box-shadow: 0 0 0 16px rgba(34, 211, 238, 0);} 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);} }
+
+    /* Optional: countdown gets hidden unless a date is set via data-launch-date */
+    #countdown { display: none; font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+    #countdown.show { display: flex; gap: 14px; flex-wrap: wrap; }
+    .timebox { background: rgba(2,6,23,.5); border: 1px solid rgba(148,163,184,.25); padding: 10px 12px; border-radius: 10px; min-width: 82px; text-align: center; }
+    .timebox .num { font-size: 1.25rem; font-weight: 800; }
+    .timebox .lbl { font-size: 0.75rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="shell" aria-labelledby="title">
+    <div class="inner">
+      <header>
+        <div class="logo" aria-hidden="true" title="Advance ADA">
+          <!-- Simple stylized A mark -->
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 20h-3.7l-1.9-4.5H8.6L6.7 22H3L12 2zm0 6.8l-2.2 5h4.4L12 8.8z"/></svg>
+        </div>
+        <div class="brand">Advance ADA</div>
+        <span class="pill" title="Status">
+          <span class="dot" aria-hidden="true"></span>
+          Preparing for launch
+        </span>
+      </header>
+
+      <div class="row">
+        <section class="left">
+          <h1 id="title">Secure Staking. Stronger Cardano.</h1>
+          <p class="lead">We're getting everything ready. <strong>Advance ADA</strong> is in final checks and will be live soon. Bookmark this page and follow our updates below.</p>
+
+          <div id="countdown" aria-live="polite" class="count"></div>
+
+          <div class="card" role="group" aria-label="Next steps">
+            <div>
+              <div class="muted" style="margin-bottom:8px;">What to expect</div>
+              <ul style="margin:0; padding-left:18px; line-height:1.7">
+                <li>Pool details (ticker, ID, pledge) published at launch</li>
+                <li>Transparent fees and uptime commitment</li>
+                <li>Real‑time stats and dashboards</li>
+              </ul>
+            </div>
+            <div class="socials" aria-label="Follow us">
+              <a class="cta" href="#" id="notifyLink">Get launch notification</a>
+              <a class="iconbtn" href="https://x.com/advanceada" aria-label="Follow on X / Twitter" title="Follow on X">
+                <!-- X logo -->
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.243 2H21l-6.52 7.45L22.5 22h-6.91l-4.53-6.14L5.71 22H3l7.02-8.02L1.5 2h7.03l4.1 5.59L18.24 2Zm-2.42 18h2.03L7.28 4H5.23l10.59 16Z"/></svg>
+              </a>
+              <a class="iconbtn" href="mailto:advanceada.stakepool@gmail.com" aria-label="Email us" title="Email">
+                <!-- Mail icon -->
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+              </a>
+              <a class="iconbtn" href="pool-meta.json" aria-label="Pool metadata JSON" title="Pool metadata">
+                <!-- Code icon -->
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.7 16.3 4.4 12l4.3-4.3 1.4 1.4L7.2 12l2.9 2.9-1.4 1.4Zm6.6 0-1.4-1.4 2.9-2.9-2.9-2.9 1.4-1.4L19.6 12l-4.3 4.3Z"/></svg>
+              </a>
+            </div>
+            <div class="muted">Prefer email? Write to <a href="mailto:advanceada.stakepool@gmail.com" style="color:#bfdbfe; text-decoration: underline;">advanceada.stakepool@gmail.com</a>.</div>
+          </div>
+        </section>
+        <aside class="right" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop" alt="Abstract blue gradient" />
+        </aside>
+      </div>
+    </div>
+    <footer>
+      <small class="muted">© <span id="year"></span> Advance ADA. All rights reserved.</small>
+      <small class="muted">This is a temporary landing page.</small>
+    </footer>
+  </main>
+
+  <script>
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // OPTIONAL: countdown — set a launch date to enable
+    // Example: add data-launch-date="2025-09-01T12:00:00-03:00" to <main>
+    (function setupCountdown(){
+      var root = document.querySelector('main');
+      var dateStr = root.getAttribute('data-launch-date');
+      if(!dateStr) return; // no date provided
+      var target = new Date(dateStr);
+      var el = document.getElementById('countdown');
+      el.classList.add('show');
+
+      function fmt(n){ return String(Math.max(0, n|0)).padStart(2, '0'); }
+      function render(){
+        var now = new Date();
+        var diff = Math.max(0, target - now);
+        var s = Math.floor(diff/1000);
+        var days = Math.floor(s/86400); s -= days*86400;
+        var hrs = Math.floor(s/3600); s -= hrs*3600;
+        var mins = Math.floor(s/60); s -= mins*60;
+        var html = [
+          ['Days',days],['Hours',hrs],['Minutes',mins],['Seconds',s]
+        ].map(function(pair){
+          return '<div class="timebox"><div class="num">'+fmt(pair[1])+'</div><div class="lbl">'+pair[0]+'</div></div>';
+        }).join('');
+        el.innerHTML = html;
+        if(diff === 0){ clearInterval(t); el.textContent = 'Launched!'; }
+      }
+      render();
+      var t = setInterval(render, 1000);
+    })();
+
+    // Replace # with your notification link (e.g., Mailchimp, Substack, Google Form)
+    document.getElementById('notifyLink').addEventListener('click', function(e){
+      if(this.getAttribute('href') === '#'){
+        e.preventDefault();
+        alert('Connect your notification link in the HTML (id="notifyLink").');
+      }
+    });
+  </script>
+</body>
+</html>
+
