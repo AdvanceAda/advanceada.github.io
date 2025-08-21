@@ -908,7 +908,7 @@ form.example::after {
 
 .testimonial_text{
     width: 100%;
-    font-size: 30px;
+    font-size: 24px;
     text-align: center;
     color: #070101;
     margin: 0px;
@@ -924,7 +924,7 @@ form.example::after {
 
 .ipsum_text{
     width: 100%;
-    font-size: 16px;
+    font-size: 10px;
     color: #030000;
     margin: 0 auto;
     text-align: center;
