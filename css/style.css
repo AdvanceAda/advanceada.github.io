@@ -1244,3 +1244,20 @@ p.dummy_text {
 .margin_top90 {
     margin-top: 90px;
 }
+
+
+/* Make sure the carousel controls stay inside the blue area */
+.services_section_2 {
+  position: relative;
+  padding-bottom: 60px; /* gives space for arrows */
+}
+
+#main_slider .carousel-control-prev,
+#main_slider .carousel-control-next {
+  bottom: 20px;  /* push them up from the edge */
+  top: auto;     /* unset default center alignment */
+  transform: none; /* remove vertical centering */
+}
+
+
+
