@@ -928,7 +928,7 @@ form.example::after {
     color: #030000;
     margin: 0 auto;
     text-align: center;
-    font-style: italic;
+    font-style: normal !important;
 }
 
 .quick_img {
