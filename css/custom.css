@@ -83,3 +83,22 @@
       margin-bottom: 15px; /* Space between stacked boxes */
    }
 }
+
+/* === Responsive Grid for Stats Section === */
+.stats_boxes {
+   display: grid;
+   grid-template-columns: 1fr 1fr; /* two columns */
+   gap: 15px; /* space between boxes */
+}
+
+/* Make the first stat box span full width */
+.stats_boxes .stat_box:first-child {
+   grid-column: 1 / -1;
+}
+
+/* On very small screens, stack everything */
+@media (max-width: 500px) {
+   .stats_boxes {
+      grid-template-columns: 1fr;
+   }
+}
