@@ -84,33 +84,30 @@
    }
 }
 
-/* === Force grid layout for stats section === */
+/* === Force grid layout for stats_boxes === */
 .stats_boxes {
    display: grid !important;
-   grid-template-columns: 1fr 1fr; /* two columns */
+   grid-template-columns: 1fr 1fr;
    gap: 15px;
 }
 
-/* First box spans full width */
-.stats_boxes > .col:first-child,
-.stats_boxes > .row:first-child,
-.stats_boxes > .stat_box:first-child {
+/* Make first item span full width */
+.stats_boxes .col-12 {
    grid-column: 1 / -1;
 }
 
-/* Remove Bootstrap row/col flex interference */
+/* Neutralize Bootstrap row/col behavior inside stats_boxes */
 .stats_boxes .row {
-   display: contents !important; /* collapse rows into grid */
-   flex-wrap: unset !important;
-   flex-direction: unset !important;
+   display: contents !important; /* collapse rows */
 }
-.stats_boxes .col {
-   display: block !important; /* ensure each col is treated as grid item */
+.stats_boxes .col-6,
+.stats_boxes .col-12 {
+   display: block !important;
    width: auto !important;
    flex: none !important;
 }
 
-/* On very small screens, stack */
+/* On very small phones, fall back to 1 column */
 @media (max-width: 500px) {
    .stats_boxes {
       grid-template-columns: 1fr;
