@@ -84,19 +84,25 @@
    }
 }
 
-/* === Responsive Grid for Stats Section === */
+/* === Responsive Grid for Stats Section (override Bootstrap stacking) === */
 .stats_boxes {
-   display: grid;
-   grid-template-columns: 1fr 1fr; /* two columns */
-   gap: 15px; /* space between boxes */
+   display: grid !important;
+   grid-template-columns: 1fr 1fr;
+   gap: 15px;
 }
 
-/* Make the first stat box span full width */
+/* First box spans full width */
 .stats_boxes .stat_box:first-child {
    grid-column: 1 / -1;
 }
 
-/* On very small screens, stack everything */
+/* Remove row flex interference */
+.stats_boxes .row {
+   display: contents; /* makes children participate directly in the grid */
+   flex-direction: unset !important;
+}
+
+/* On very small screens, fallback to single column */
 @media (max-width: 500px) {
    .stats_boxes {
       grid-template-columns: 1fr;
