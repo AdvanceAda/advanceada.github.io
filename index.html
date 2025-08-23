@@ -313,6 +313,7 @@
 
 
 
+
 <!-- Stats section start -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
@@ -334,34 +335,30 @@
          <div class="col-md-6">
             <h1 class="stats_taital">Stats</h1>
             <div class="stats_boxes">
-               <!-- First row: Live Stake (full width) -->
-               <div class="stat-row full-width mb-3">
-                  <div class="stat_box">
-                     <h3>Live Stake</h3>
-                     <p id="LiveStake"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_stake"></span> ADA</p>
-                  </div>
+               <!-- Live Stake (spans both columns on desktop) -->
+               <div class="stat_box">
+                  <h3>Live Stake</h3>
+                  <p id="LiveStake"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_stake"></span> ADA</p>
                </div>
-               <!-- Second row: Return Lifetime and Blocks Lifetime -->
-               <div class="stat-row mb-3">
-                  <div class="stat_box">
-                     <h3>Return Lifetime</h3>
-                     <p id="returnLifetime"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_roa_lifetime"></span>%</p>
-                  </div>
-                  <div class="stat_box">
-                     <h3>Blocks Lifetime</h3>
-                     <p id="blocksLifetime"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_blocks_lifetime"></span></p>
-                  </div>
+               <!-- Return Lifetime -->
+               <div class="stat_box">
+                  <h3>Return Lifetime</h3>
+                  <p id="returnLifetime"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_roa_lifetime"></span>%</p>
                </div>
-               <!-- Third row: Pledge and Cost -->
-               <div class="stat-row">
-                  <div class="stat_box">
-                     <h3>Pledge</h3>
-                     <p id="pledge"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_pledge"></span> ADA</p>
-                  </div>
-                  <div class="stat_box">
-                     <h3>Cost</h3>
-                     <p id="poolCost">0<span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_ratio"></span>% +  <span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_fix"></span> ADA</p>
-                  </div>
+               <!-- Blocks Lifetime -->
+               <div class="stat_box">
+                  <h3>Blocks Lifetime</h3>
+                  <p id="blocksLifetime"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_blocks_lifetime"></span></p>
+               </div>
+               <!-- Pledge -->
+               <div class="stat_box">
+                  <h3>Pledge</h3>
+                  <p id="pledge"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_pledge"></span> ADA</p>
+               </div>
+               <!-- Cost -->
+               <div class="stat_box">
+                  <h3>Cost</h3>
+                  <p id="poolCost">0<span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_ratio"></span>% +  <span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_fix"></span> ADA</p>
                </div>
             </div>
          </div>
@@ -386,89 +383,52 @@
    }
    .stats_boxes {
        margin-bottom: 20px;
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       row-gap: 20px;
+       column-gap: 10px;
        max-width: 100%;
    }
    .stat_box {
        background-color: transparent;
        color: #ffffff;
        border: 2px solid #ffffff;
-       padding: 15px; /* Reduced padding to accommodate content */
-       margin-bottom: 15px;
+       padding: 15px;
        text-align: center;
        border-radius: 5px;
-       min-height: 110px; /* Adjusted for reduced padding */
+       min-height: 110px;
        box-sizing: border-box;
-       overflow: hidden; /* Prevent content overflow */
-       white-space: nowrap; /* Prevent text wrapping */
-       text-overflow: ellipsis; /* Add ellipsis for long content */
+       overflow: hidden;
+       white-space: nowrap;
+       text-overflow: ellipsis;
    }
-   .full-width .stat_box {
-       min-height: 90px; /* Adjusted for reduced padding */
-       width: 100%;
+   .stat_box:first-child {
+       grid-column: 1 / -1;
+       min-height: 90px;
    }
    .stat_box h3, .stat_box p {
        color: #ffffff;
        margin: 0;
-       font-size: 14px; /* Reduced font size for better fit */
+       font-size: 14px;
    }
    .stats_img img {
        max-width: 100%;
        height: auto;
    }
-   .mb-3 {
-       margin-bottom: 30px;
-   }
-   /* Default 3-row layout using CSS Grid for desktop */
-   .stats_boxes {
-       display: grid;
-       grid-template-areas:
-           "live"
-           "row2"
-           "row3";
-       gap: 15px;
-       max-width: 100%;
-   }
-   .stat-row.full-width {
-       grid-area: live;
-   }
-   .stat-row:nth-child(2) {
-       grid-area: row2;
-       display: grid;
-       grid-template-columns: 1fr 1fr;
-       gap: 10px;
-   }
-   .stat-row:nth-child(3) {
-       grid-area: row3;
-       display: grid;
-       grid-template-columns: 1fr 1fr;
-       gap: 10px;
-   }
-   .stat-row .stat_box {
-       width: 100%;
-   }
    /* Stack to 5 rows below 500px (mobile) */
    @media (max-width: 500px) {
        .stats_boxes {
-           display: block;
-       }
-       .stat-row {
-           display: flex;
-           flex-direction: column;
-           margin-bottom: 15px;
-       }
-       .stat-row .stat_box {
-           flex: 0 0 100%;
-           max-width: 100%;
-           margin-right: 0;
-           margin-bottom: 15px;
+           grid-template-columns: 1fr;
+           row-gap: 15px;
        }
        .stat_box {
-           min-height: 90px; /* Adjusted for mobile */
+           min-height: 90px;
+           grid-column: 1 / -1;
        }
    }
 </style>
 <!-- Stats section end -->
-
+   
 
    
       <!-- about section start -->
