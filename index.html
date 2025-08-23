@@ -393,11 +393,11 @@
        margin-bottom: 15px;
        text-align: center;
        border-radius: 5px;
-       min-height: 120px; /* Consistent height for harmony */
+       min-height: 120px;
        box-sizing: border-box;
    }
    .full-width .stat_box {
-       min-height: 100px; /* Adjusted for full-width box */
+       min-height: 100px;
        width: 100%;
    }
    .stat_box h3, .stat_box p {
@@ -411,13 +411,59 @@
    .mb-3 {
        margin-bottom: 30px;
    }
-   /* Default 3-row layout for desktop */
-   .stat-row {
+   /* Default 3-row layout using CSS Grid for desktop */
+   .stats_boxes {
+       display: grid;
+       grid-template-areas:
+           "live"
+           "row2"
+           "row3";
+       gap: 15px;
+   }
+   .stat-row.full-width {
+       grid-area: live;
+   }
+   .stat-row:nth-child(2) {
+       grid-area: row2;
        display: flex;
        justify-content: space-between;
-       width: 100%;
-       margin-bottom: 15px
-
+   }
+   .stat-row:nth-child(3) {
+       grid-area: row3;
+       display: flex;
+       justify-content: space-between;
+   }
+   .stat-row .stat_box {
+       flex: 1;
+       margin-right: 15px;
+       max-width: 48%;
+   }
+   .stat-row .stat_box:last-child {
+       margin-right: 0;
+   }
+   /* Stack to 5 rows below 500px (mobile) */
+   @media (max-width: 500px) {
+       .stats_boxes {
+           display: block;
+       }
+       .stat-row {
+           display: flex;
+           flex-direction: column;
+           margin-bottom: 15px;
+       }
+       .stat-row .stat_box {
+           flex: 0 0 100%;
+           max-width: 100%;
+           margin-right: 0;
+           margin-bottom: 15px;
+       }
+       .stat_box {
+           min-height: 100px;
+       }
+   }
+</style>
+<!-- Stats section end -->
+   
    
       <!-- about section start -->
 <div class="pricing_section layout_padding" id="About">
