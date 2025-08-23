@@ -144,7 +144,7 @@
    text-align: center;
    box-sizing: border-box;
    min-width: 0;
-   min-height: 120px; /* Consistent height for harmony */
+   min-height: 120px;
 }
 
 /* Ensure the title is properly aligned and white */
@@ -165,51 +165,35 @@
 
 /* Responsive adjustments */
 @media (max-width: 767px) {
-   .stats_boxes .row {
+   .stats_boxes .stat-row {
       flex-direction: column;
    }
    .stat_box {
       flex: 1 1 100%;
       margin-bottom: 15px;
-      min-height: 100px; /* Adjusted for mobile */
+      min-height: 100px;
    }
 }
 
-/* Force grid layout for stats_boxes */
-.stats_boxes {
-   display: grid !important;
-   grid-template-columns: 1fr 1fr;
-   gap: 15px;
-}
-
-/* Make first item span full width */
-.stats_boxes .col-12 {
-   grid-column: 1 / -1;
-}
-
-/* Neutralize Bootstrap row/col behavior inside stats_boxes */
-.stats_boxes .row {
-   display: contents !important;
-}
-.stats_boxes .col-6,
-.stats_boxes .col-12 {
-   display: block !important;
-   width: auto !important;
-   flex: none !important;
-}
-
-/* On very small phones, fall back to 1 column */
+/* Stack to 5 rows below 500px */
 @media (max-width: 500px) {
-   .stats_boxes {
-      grid-template-columns: 1fr;
+   .stats_boxes .stat-row {
+      flex-direction: column;
+   }
+   .stats_boxes .stat-row .stat_box {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 15px;
+      margin-right: 0;
    }
 }
 
-/* Ensure equal width and spacing for second and third rows */
-.stats_boxes .row .col-6 {
-   flex: 0 0 48%;
+/* Ensure equal width and spacing for second and third rows on desktop */
+.stats_boxes .stat-row .stat_box {
+   flex: 1;
+   margin-right: 15px;
    max-width: 48%;
 }
-
-
-
+.stats_boxes .stat-row .stat_box:last-child {
+   margin-right: 0;
+}
