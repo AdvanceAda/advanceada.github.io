@@ -311,7 +311,6 @@
       </div>
       <!-- hosting section end -->
 
-
 <!-- Stats section start -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
@@ -334,42 +333,32 @@
             <h1 class="stats_taital">Stats</h1>
             <div class="stats_boxes">
                <!-- First row: Live Stake (full width) -->
-               <div class="row mb-3">
-                  <div class="col-12">
-                     <div class="stat_box full-width">
-                        <h3>Live Stake</h3>
-                        <p id="LiveStake"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_stake"></span> ADA</p>
-                     </div>
+               <div class="stat-row full-width mb-3">
+                  <div class="stat_box">
+                     <h3>Live Stake</h3>
+                     <p id="LiveStake"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_stake"></span> ADA</p>
                   </div>
                </div>
-               <!-- Second row: Return Lifetime (left) and Blocks Lifetime (right) -->
-               <div class="row mb-3">
-                  <div class="col-6">
-                     <div class="stat_box">
-                        <h3>Return Lifetime</h3>
-                        <p id="returnLifetime"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_roa_lifetime"></span>%</p>
-                     </div>
+               <!-- Second row: Return Lifetime and Blocks Lifetime -->
+               <div class="stat-row mb-3">
+                  <div class="stat_box">
+                     <h3>Return Lifetime</h3>
+                     <p id="returnLifetime"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_roa_lifetime"></span>%</p>
                   </div>
-                  <div class="col-6">
-                     <div class="stat_box">
-                        <h3>Blocks Lifetime</h3>
-                        <p id="blocksLifetime"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_blocks_lifetime"></span></p>
-                     </div>
+                  <div class="stat_box">
+                     <h3>Blocks Lifetime</h3>
+                     <p id="blocksLifetime"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_blocks_lifetime"></span></p>
                   </div>
                </div>
-               <!-- Third row: Pledge (left) and Cost (right) -->
-               <div class="row">
-                  <div class="col-6">
-                     <div class="stat_box">
-                        <h3>Pledge</h3>
-                        <p id="pledge"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_pledge"></span> ADA</p>
-                     </div>
+               <!-- Third row: Pledge and Cost -->
+               <div class="stat-row">
+                  <div class="stat_box">
+                     <h3>Pledge</h3>
+                     <p id="pledge"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_pledge"></span> ADA</p>
                   </div>
-                  <div class="col-6">
-                     <div class="stat_box">
-                        <h3>Cost</h3>
-                        <p id="poolCost">0<span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_ratio"></span>% +  <span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_fix"></span> ADA</p>
-                     </div>
+                  <div class="stat_box">
+                     <h3>Cost</h3>
+                     <p id="poolCost">0<span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_ratio"></span>% +  <span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_fix"></span> ADA</p>
                   </div>
                </div>
             </div>
@@ -405,9 +394,11 @@
        text-align: center;
        border-radius: 5px;
        min-height: 120px; /* Consistent height for harmony */
+       box-sizing: border-box;
    }
-   .full-width {
+   .full-width .stat_box {
        min-height: 100px; /* Adjusted for full-width box */
+       width: 100%;
    }
    .stat_box h3, .stat_box p {
        color: #ffffff;
@@ -420,26 +411,12 @@
    .mb-3 {
        margin-bottom: 30px;
    }
-   .row {
-       min-height: 60px;
-   }
-   /* Ensure equal width and spacing for second and third rows */
-   .stats_boxes .row .col-6 {
-       flex: 0 0 48%; /* Slightly less than 50% to account for padding/margins */
-       max-width: 48%;
-   }
-   @media (max-width: 767px) {
-       .stats_boxes .row .col-6 {
-           flex: 0 0 100%;
-           max-width: 100%;
-       }
-       .stat_box {
-           min-height: 100px; /* Adjusted for mobile */
-       }
-   }
-</style>
-<!-- Stats section end -->
-
+   /* Default 3-row layout for desktop */
+   .stat-row {
+       display: flex;
+       justify-content: space-between;
+       width: 100%;
+       margin-bottom: 15px
 
    
       <!-- about section start -->
