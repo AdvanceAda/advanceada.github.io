@@ -293,10 +293,28 @@
 </div>
 <!-- Why section end -->
 
+
+      <!-- hosting section start -->
+<!--      <div class="hosting_section layout_padding" id="Stats">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <h1 class="hosting_taital">Recent Stats</h1>
+                  <p class="hosting_text"> To be updated - Under construction <br><br><br><br><br><br><br><br></p>
+                  <!--<div class="click_bt"><a href="#">Click Here</a></div>-->
+<!--               </div>
+               <div class="col-md-6">
+                  <div class="hosting_img"><img src="images/Advan_Blockchain.png"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- hosting section end -->
+
+
 <!-- Stats section start -->
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script><script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
    $.getJSON("https://js.cexplorer.io/api-static/pool/pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h.json", function(data) { 
    $.each( data.data, function( i, val ) { 
          a=new Array('tax_fix','pledge','stake');
@@ -306,7 +324,7 @@
          $('#pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_'+i).html(val).text();   
    }); 
          });
-   </script>
+</script>
 
 <div class="stats_section layout_padding" id="Stats">
    <div class="container">
@@ -318,7 +336,7 @@
                <!-- First row: Live Stake (full width) -->
                <div class="row mb-3">
                   <div class="col-12">
-                     <div class="stat_box">
+                     <div class="stat_box full-width">
                         <h3>Live Stake</h3>
                         <p id="LiveStake"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_stake"></span> ADA</p>
                      </div>
@@ -367,62 +385,63 @@
 </div>
 <style>
    .stats_section {
-       background-color: #272b91; /* Updated to new blue notation */
-       color: #ffffff; /* White text for visibility */
-       padding: 40px 0; /* Add padding for better spacing */
+       background-color: #272b91;
+       color: #ffffff;
+       padding: 40px 0;
    }
    .stats_taital {
-       color: #ffffff; /* White title text */
+       color: #ffffff;
        margin-bottom: 20px;
    }
    .stats_boxes {
        margin-bottom: 20px;
    }
    .stat_box {
-       background-color: transparent; /* Transparent background for stat boxes */
-       color: #ffffff; /* White text for visibility */
-       border: 2px solid #ffffff; /* White border for stat boxes */
-       padding: 10px;
+       background-color: transparent;
+       color: #ffffff;
+       border: 2px solid #ffffff;
+       padding: 20px;
        margin-bottom: 15px;
-       text-align: center; /* Center text for better presentation */
-       border-radius: 5px; /* Rounded corners to match the image style */
+       text-align: center;
+       border-radius: 5px;
+       min-height: 120px; /* Consistent height for harmony */
+   }
+   .full-width {
+       min-height: 100px; /* Adjusted for full-width box */
    }
    .stat_box h3, .stat_box p {
-       color: #ffffff; /* Ensure all text inside stat boxes is white */
-       margin: 0; /* Remove default margins for cleaner look */
+       color: #ffffff;
+       margin: 0;
    }
    .stats_img img {
-       max-width: 100%; /* Ensure image scales properly */
-       height: auto; /* Maintain aspect ratio */
+       max-width: 100%;
+       height: auto;
    }
    .mb-3 {
-       margin-bottom: 30px; /* Increased margin to separate rows visually */
+       margin-bottom: 30px;
    }
-   /* Ensure rows don't collapse */
    .row {
-       min-height: 60px; /* Minimum height to force row visibility */
+       min-height: 60px;
+   }
+   /* Ensure equal width and spacing for second and third rows */
+   .stats_boxes .row .col-6 {
+       flex: 0 0 48%; /* Slightly less than 50% to account for padding/margins */
+       max-width: 48%;
+   }
+   @media (max-width: 767px) {
+       .stats_boxes .row .col-6 {
+           flex: 0 0 100%;
+           max-width: 100%;
+       }
+       .stat_box {
+           min-height: 100px; /* Adjusted for mobile */
+       }
    }
 </style>
 <!-- Stats section end -->
 
-      <!-- hosting section start -->
-<!--      <div class="hosting_section layout_padding" id="Stats">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-6">
-                  <h1 class="hosting_taital">Recent Stats</h1>
-                  <p class="hosting_text"> To be updated - Under construction <br><br><br><br><br><br><br><br></p>
-                  <!--<div class="click_bt"><a href="#">Click Here</a></div>-->
-<!--               </div>
-               <div class="col-md-6">
-                  <div class="hosting_img"><img src="images/Advan_Blockchain.png"></div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- hosting section end -->
 
-
+   
       <!-- about section start -->
 <div class="pricing_section layout_padding" id="About">
    <div class="container">
