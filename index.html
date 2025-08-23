@@ -335,27 +335,25 @@
          <div class="col-md-6">
             <h1 class="stats_taital">Stats</h1>
             <div class="stats_boxes">
-               <!-- Live Stake (spans both columns on desktop) -->
-               <div class="stat_box">
+               <!-- First row: Live Stake (spans both columns on desktop) -->
+               <div class="stat_box full-width">
                   <h3>Live Stake</h3>
                   <p id="LiveStake"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_stake"></span> ADA</p>
                </div>
-               <!-- Return Lifetime -->
+               <!-- Second row: Return Lifetime and Blocks Lifetime -->
                <div class="stat_box">
                   <h3>Return Lifetime</h3>
                   <p id="returnLifetime"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_roa_lifetime"></span>%</p>
                </div>
-               <!-- Blocks Lifetime -->
                <div class="stat_box">
                   <h3>Blocks Lifetime</h3>
                   <p id="blocksLifetime"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_blocks_lifetime"></span></p>
                </div>
-               <!-- Pledge -->
+               <!-- Third row: Pledge and Cost -->
                <div class="stat_box">
                   <h3>Pledge</h3>
                   <p id="pledge"><span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_pledge"></span> ADA</p>
                </div>
-               <!-- Cost -->
                <div class="stat_box">
                   <h3>Cost</h3>
                   <p id="poolCost">0<span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_ratio"></span>% +  <span id="pool1zm5nqvrdwmslk682d9qemd9fn8htg2rxlprxjuh0ae5l6sqzz3h_tax_fix"></span> ADA</p>
@@ -385,8 +383,8 @@
        margin-bottom: 20px;
        display: grid;
        grid-template-columns: 1fr 1fr;
-       row-gap: 20px;
-       column-gap: 10px;
+       grid-template-rows: auto auto auto; /* Explicitly define 3 rows */
+       gap: 15px; /* Consistent spacing */
        max-width: 100%;
    }
    .stat_box {
@@ -402,9 +400,8 @@
        white-space: nowrap;
        text-overflow: ellipsis;
    }
-   .stat_box:first-child {
-       grid-column: 1 / -1;
-       min-height: 90px;
+   .full-width {
+       grid-column: 1 / -1; /* Span both columns on desktop */
    }
    .stat_box h3, .stat_box p {
        color: #ffffff;
@@ -418,17 +415,20 @@
    /* Stack to 5 rows below 500px (mobile) */
    @media (max-width: 500px) {
        .stats_boxes {
-           grid-template-columns: 1fr;
-           row-gap: 15px;
+           grid-template-columns: 1fr; /* Single column */
+           grid-template-rows: repeat(5, auto); /* 5 rows */
+           gap: 15px;
        }
        .stat_box {
+           grid-column: 1 / -1; /* All span full width */
            min-height: 90px;
-           grid-column: 1 / -1;
+       }
+       .full-width {
+           grid-column: 1 / -1; /* Ensure first row still spans */
        }
    }
 </style>
-<!-- Stats section end -->
-   
+<!-- Stats section end -->   
 
    
       <!-- about section start -->
