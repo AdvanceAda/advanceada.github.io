@@ -190,19 +190,3 @@
       margin-right: 0;
    }
 }
-
-
-
-/* TRECHO SOBRE AS SETAS < > NO COMEÇO DO TÍTULO */
-@media (max-width: 767px) {
-    #main_slider a.carousel-control-next {
-        display: block !important;
-        top: 50%;
-        right: 0px;
-    }
-    #main_slider a.carousel-control-prev {
-        display: block !important;
-        top: 50%;
-        left: 0px;
-    }
-}
