@@ -84,7 +84,98 @@
    }
 }
 
+
+
 /* === Force grid layout for stats_boxes === */
+
+
+/* === About Boxes Layout & Equal Height === */
+.about_box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* === Add spacing between rows === */
+.about-row {
+    margin-bottom: 40px;
+}
+
+/* === Icon Circle Styling with Bigger Icons === */
+.icon-circle {
+   width: 90px;
+   height: 90px;
+   border-radius: 50%;
+   background: #f0f0f0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 30px auto 20px;
+}
+
+.icon-circle i {
+   font-size: 40px;
+   color: #21237a;
+}
+
+/* STATS CSS SECTION */
+
+/* Ensure the stats section is properly contained with the specified blue background */
+.stats_section {
+   padding: 50px 0;
+   background-color: #00394D;
+   color: #ffffff;
+}
+
+/* Style for the stats_boxes container */
+.stats_boxes {
+   gap: 0;
+   margin-bottom: 20px;
+}
+
+/* Style for individual stat boxes */
+.stat_box {
+   background-color: transparent;
+   padding: 20px;
+   border: 2px solid #ffffff;
+   border-radius: 5px;
+   text-align: center;
+   box-sizing: border-box;
+   min-width: 0;
+   min-height: 120px; /* Consistent height for harmony */
+}
+
+/* Ensure the title is properly aligned and white */
+.stats_taital {
+   margin-bottom: 30px;
+   font-size: 2.5rem;
+   font-weight: bold;
+   color: #ffffff;
+}
+
+/* Image styling to ensure it stays in its column */
+.stats_img img {
+   max-width: 100%;
+   height: auto;
+   display: block;
+   margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+   .stats_boxes .row {
+      flex-direction: column;
+   }
+   .stat_box {
+      flex: 1 1 100%;
+      margin-bottom: 15px;
+      min-height: 100px; /* Adjusted for mobile */
+   }
+}
+
+/* Force grid layout for stats_boxes */
 .stats_boxes {
    display: grid !important;
    grid-template-columns: 1fr 1fr;
@@ -98,7 +189,7 @@
 
 /* Neutralize Bootstrap row/col behavior inside stats_boxes */
 .stats_boxes .row {
-   display: contents !important; /* collapse rows */
+   display: contents !important;
 }
 .stats_boxes .col-6,
 .stats_boxes .col-12 {
@@ -113,3 +204,12 @@
       grid-template-columns: 1fr;
    }
 }
+
+/* Ensure equal width and spacing for second and third rows */
+.stats_boxes .row .col-6 {
+   flex: 0 0 48%;
+   max-width: 48%;
+}
+
+
+
